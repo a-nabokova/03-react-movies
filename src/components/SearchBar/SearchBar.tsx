@@ -1,5 +1,5 @@
 import css from './SearchBar.module.css'; 
-
+import toast, { Toaster } from 'react-hot-toast';
 
 interface SearchBarProps {
   onSubmit: (searchValue: string) => void;
@@ -9,12 +9,20 @@ export default function SearchBar({ onSubmit }: SearchBarProps) {
   
   const handleSubmit = (formData: FormData) => {
     const searchValue = formData.get('query') as string; 
-    onSubmit(searchValue); 
+    
+    if (!searchValue) {
+    toast.error('Please enter your search query.');
+    return;
+  }
+
+    onSubmit(searchValue)  
 
   }
-    return (
+  return (
+      
         <header className={css.header}>
-  <div className={css.container}>
+      <div className={css.container}>
+         <Toaster position="top-center" />
     <a
       className={css.link}
       href="https://www.themoviedb.org/"
