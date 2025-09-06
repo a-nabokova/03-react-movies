@@ -62,6 +62,7 @@ function App() {
         {isModalOpen && selectedMovie && (
           <MovieModal movie={selectedMovie} onClose={closeModal} />
         )}
+         <Toaster position="top-center" />
       </div>
     </>
   )
